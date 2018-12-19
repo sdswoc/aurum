@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% include "messages.html" %}
+
+<head>
+	<title> {% block head_title %} Aurum | Posts {% endblock head_title %} </title>
+
+</head>
+
+{% block content %}
+	
+    <h1><u> Posts </u></h1>
+
+	{% for object in object_list %}
+	 {{object.id}}<br>
+	<i><a href='{{object.get_absolute_url}}'> {{object.title}}</a></i><br>
+	 {{object.content}}<br>
+	 {{object.timestamp}}<br>
+	 <br>
+	{% endfor %} 
+	
+{% endblock content %}

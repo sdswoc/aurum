@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+<head>
+	<title> {% block head_title %} Aurum | Create Post {% endblock head_title %} 
+	</title>
+</head>
+
+{% block content %}
+
+	<h3>Create A Post</h3>
+	<form method ='POST' action = '' >
+		
+		{{ form.as_p}} {% csrf_token %}
+      <input type="submit" name="Create A Post" />
+    </form>
+{% endblock %}
