@@ -1,6 +1,6 @@
 {% extends "base.html" %}
-{% include "meesages.html" %}
-
+{% include "messages.html" %}
+<!-- {% include "post_answer.html" %} -->
 <head>
 <title>
 {% block head_title %}
@@ -10,24 +10,44 @@ Post | {{instance.title}}
 </title>
 </head>
 
-<body>
 
 {% block content %}
+<body style="background-color:powderblue;">
 
+<div class= 'col-sm-8 col-sm-offset-2'>
 
+	 <h1><i><b>{{instance.title}}</i></b> <br> <small> {{instance.timestamp | timesince}} ago by {{request.user}} </small></h1>
+	 <!-- {{instance.id}}<br> -->
+	 <!-- <b>{{instance.title}}</b><br> -->
+	 <br>{{instance.content | linebreaks}}<br>
+	{% if instance.image %}
+	<img src= '{{ instance.image.url }}' class='img-responsive' />
+	{% endif %} 
+	 <br><hr>
+	<button type="button" class="btn btn-default"><a href="{{instance.get_update_url}}"> Edit Post</a></button> 
+    <button type="button" class="btn btn-default"><a href="{{instance.get_delete_url}}"> Delete Post</a></button>
+    <!-- <button type="button" class="btn btn-default"><a href="{{instance_ans.get_answer_url}}"> Answer</a></button> -->
 
-	 <h1>{{instance.title}}</h1>
-	 {{instance.id}}<br>
-	 <b>{{instance.title}}</b><br>
-	 {{instance.content}}<br>
-	 {{instance.timestamp}}<br>
-	 <br>
-	 <br>
-    <button type="button"><a href="{{instance.get_delete_url}}"> Delete Post</a></button>
+     <br><br>
+     Love What You See? Let others know about it too!  
      <br>
-     <br>
+     <a href="https://www.facebook.com/sharer/sharer.php?u={{request.build_absolute_uri}}"><b>
+     Facebook
+     </a> 
+     &nbsp;
+     <a href="https://twitter.com/home?status={{ share_string }}%20{{ request.build_absolute_uri }}">
+     Twitter
+     </a>
+     &nbsp;
+     <a href="http://www.reddit.com/submit?url={{request.build_absolute_uri}}&title={{ share_string }}.">Reddit
+     </a>
+
+    
+     </b><br><br>
 	 <a href="{{instance.get_another_url}}"> Back To Home </a>
-	
-{% endblock %}
+
+	</div>
 </body>
+{% endblock %}
+
 

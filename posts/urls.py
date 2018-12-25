@@ -5,11 +5,12 @@ from  posts  import views as abc
 
 urlpatterns = [
 
-url(r'^$'                         , abc.post_home   , name='list'      ) ,
-url(r'^create/$'                  , abc.post_create                ) ,
-url(r'^detail/(?P<id>\d+)/$'      , abc.post_detail , name='detail') ,
-url(r'^update/(?P<id>\d+)/$'      , abc.post_update , name='update') ,
-url(r'^delete/(?P<id>\d+)$'       , abc.post_delete , name='delete') ,
+url(r'^$'                              , abc.post_home   , name='list'  ) ,
+url(r'^create/$'                       , abc.post_create , name='create') ,
+url(r'^detail/(?P<slug>[\w-]+)/$'      , abc.post_detail , name='detail') ,
+url(r'^update/(?P<slug>[\w-]+)/$'      , abc.post_update , name='update') ,
+url(r'^delete/(?P<slug>[\w-]+)$'       , abc.post_delete , name='delete') ,
+# url(r'^answer/(?P<id>\d+)$'       , abc.post_answer , name='answer') ,
 
 
 ]

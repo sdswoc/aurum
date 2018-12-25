@@ -1,22 +1,71 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 
 {% include "messages.html" %}
 
 <head>
-	<title> {% block head_title %} Aurum | Posts {% endblock head_title %} </title>
-
+    <title> {% block head_title %} Aurum | Posts {% endblock head_title %} </title>
 </head>
 
 {% block content %}
-	
-    <h1><u> Posts </u></h1>
 
-	{% for object in object_list %}
-	 {{object.id}}<br>
-	<i><a href='{{object.get_absolute_url}}'> {{object.title}}</a></i><br>
-	 {{object.content}}<br>
-	 {{object.timestamp}}<br>
-	 <br>
-	{% endfor %} 
-	
+<body style="background-color:powderblue;">
+
+
+
+<div class="col-sm-8 col-sm-offset-2">    
+<h1 style="color:grey;"><b>Aurum</b></h1>    
+
+<h2><u><b> Posts </u></h2></b>
+            <h3><b><a href='create'>Ask Something....</a></h3></b>
+<hr >
+<div class="row">
+
+
+
+
+    {% for object in object_list %}        
+    
+
+      <div class="col-sm-12">
+        <div class="thumbnail" >
+            {% if object.image %}
+            <img src="{{object.image.url}}" class = 'img-responsive' img style="width: 600px ; height: 500px"/>
+            {% endif %}
+          <div class="caption">
+            <h3><i><b><a href='{{object.get_absolute_url}}'>{{object.title}}</a></i></b><small> {{object.updated}} by {{object.user}}</small></h3>
+            
+            <p>{{object.content | linebreaks | truncatechars:120}}</p>
+            <p><a href= '{{object.get_absolute_url}}' class="btn btn-primary" role="button">View</a></p>
+            <!-- <a href="{% url 'logout' %}">logout</a> -->
+          
+          </div>
+        </div>
+      </div>
+    
+    
+    {% cycle "" "</div> <div class='row'>" %}
+    {% endfor %}
+
+<div class="pagination">
+    <span class="step-links">
+     <b> <i>{% if object_list.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ object_list.previous_page_number }}">previous</a></i>
+        {% endif %}
+
+        <span class="current">
+            Page {{ object_list.number }} of {{ object_list.paginator.num_pages }}.
+        </span>
+
+        {% if object_list.has_next %}
+          <i><a href="?page={{ object_list.next_page_number }}">next</a>
+            <a href="?page={{ object_list.paginator.num_pages }}">last &raquo;</a></i>
+        {% endif %} </b>
+    </span>
+
+</div>
+
+</div>
+</div>
+</body>
 {% endblock content %}

@@ -7,10 +7,16 @@
 
 {% block content %}
 
-	<h3>Create A Post</h3>
-	<form method ='POST' action = '' >
+<div class="col-sm-8 col-sm-offset-2">    
+
+<body style="background-color:powderblue;">
+
+	<h2><b>Ask Something...</b></h2><br>
+	<form method ='POST' action = '' enctype='multipart/form-data' >
 		
 		{{ form.as_p}} {% csrf_token %}
-      <input type="submit" name="Create A Post" />
+      <input type="submit" class="btn btn-default" value="Ask!" />
     </form>
+</body>
+</div>
 {% endblock %}
