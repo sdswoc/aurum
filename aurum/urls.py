@@ -1,5 +1,4 @@
 """aurum URL Configuration
-
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/2.0/topics/http/urls/
 Examples:
@@ -18,15 +17,19 @@ from django.conf.urls import include,url
 from django.conf.urls.static import static
 from django.conf import settings
 
+from accounts import views
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^posts/', include("posts.urls")) ,
-    url(r'^', include('django.contrib.auth.urls')) ,
+    url(r'^',       include('django.contrib.auth.urls')),
+    url(r'^signup/', views.signup),
+
 
     
 ]
 
 
 if settings.DEBUG:
-    urlpatterns+= static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-    urlpatterns+= static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.STATIC_URL , document_root= settings.STATIC_ROOT )
+    urlpatterns += static(settings.MEDIA_URL  , document_root= settings.MEDIA_ROOT  )

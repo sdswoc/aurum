@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% include "messages.html" %}
+<!-- {% include "post_answer.html" %} -->
+<head>
+<title>
+{% block head_title %}
+Post | {{instance.title}}
+
+{% endblock head_title %}
+</title>
+</head>
+
+
+{% block content %}
+<body style="background-color:#EAE7DE;">
+
+<div class= 'col-sm-8 col-sm-offset-2'>
+    <p>
+     <h1><i><b>{{instance.title}}</i></b> <br> <small> {{instance.timestamp | timesince}} ago by {{instance.username}} </small></h1><hr>
+     <!-- {{instance.id}}<br> -->
+     <!-- <b>{{instance.title}}</b><br> -->
+    <b> <br>{{instance.content | linebreaks}}<br> </b>
+    {% if instance.image %}
+    <img src= '{{ instance.image.url }}' class='img-responsive' />
+    {% endif %} 
+     <br><hr>
+    <button type="button" class="btn btn-default"><a href="{{instance.get_update_url}}"> Edit Post</a></button> 
+    <button type="button" class="btn btn-default"><a href="{{instance.get_delete_url}}"> Delete Post</a></button>
+    <!-- <button type="button" class="btn btn-default"><a href="{{instance_ans.get_answer_url}}"> Answer</a></button> -->
+ Add a comment - <a href=" {% url "></a>
+
+     <br><br><b>
+     Love What You See? Let others know about it too!  </b>
+     <br>
+     <a href="https://www.facebook.com/sharer/sharer.php?u={{request.build_absolute_uri}}"><b>
+     Facebook
+     </a> 
+     &nbsp;
+     <a href="https://twitter.com/home?status={{ share_string }}%20{{ request.build_absolute_uri }}">
+     Twitter
+     </a>
+     &nbsp;
+     <a href="http://www.reddit.com/submit?url={{request.build_absolute_uri}}&title={{ share_string }}.">Reddit
+     </a>
+
+    
+     </b><br><br>
+     <a href="{{instance.get_another_url}}"> Back To Home </a> </p>
+
+    </div>
+<div style="position: absolute; bottom: 5px; class="col-sm-offset-20">
+    Made With ❤️ by <a href="https://github.com/p0is0nivy">p0is0nivy™</a>  
+    </div>
+
+</body>
+
+{% endblock %}

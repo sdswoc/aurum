@@ -82,24 +82,19 @@ def post_update(request,slug=None):
 
 
 def post_delete(request,slug):
+	
+	if not user.is_authenticated:
+		raise Http404
+
 	instance= get_object_or_404(Post , slug=slug)
 	instance.delete()
 	messages.success(request , "Post deleted!")
 
 	return HttpResponseRedirect(instance.get_another_url())
 
-# def post_answer(request,slug):
-# 	instance_ans =get_object_or_404(Post , slug=slug)  #needed cause we have to generate form
-# 	form = AnswerForm(request.POST or None , request.FILES or None , instance= instance_ans) # so as to include image in database also
-# 	if form.is_valid():
-# 		instance = form.save(commit = False)
-# 		instance.save()
-# 		messages.success(request , "Answer Successful!")
-# 		form = AnswerForm()
-# 		return HttpResponseRedirect(instance.get_absolute_url())
-	
-# 	context = {
-# 	"form" : form  ,
-# 	"instance_ans" : instance_ans	
-# 	}
-# 	return render( request , 'post_answer.html' , context)	
+def post_comment(request,slug):
+
+	if not user.is_authenticated():
+		raise Http404
+			
+

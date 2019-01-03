@@ -1,4 +1,31 @@
-.h1  {
+h1  {
    
-   color : #CD5C5C;
+   color : #CD5C5C !important;
 }
+
+/*#grad1 {
+ 
+    /*background-color: red;  For browsers that do not support gradients */
+  /*background-image: linear-gradient(to right, rgba(255,0,0,0), rgba(255,0,0,1)) !important;*/
+
+
+hr { 
+      border-color: #000000  !important;
+
+}
+
+p {
+  font-family: "Courier" !important;
+}
+
+
+h4  {
+   
+   font-family:  : "Bookman" !important;
+}
+
+
+/*.button2:hover {
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19) ;
+  background-color: 	#4CAF50;
+}*/

@@ -9,21 +9,23 @@ from django.db.models.signals import pre_save
 from django.utils.text import slugify
 
 from django.conf import settings
+
+
 # Create your models here.
 
 def upload_location(instance , filename):
 	return "%s/%s" %(instance.slug , filename)
 
 class Post(models.Model):
-	user = models.ForeignKey(settings.AUTH_USER_MODEL , default =1, on_delete=models.DO_NOTHING)
+	username = models.ForeignKey(settings.AUTH_USER_MODEL , default =1, on_delete=models.DO_NOTHING)
 	title=models.CharField(max_length=120)
 	slug = models.SlugField(unique=True)
 	image=models.FileField(upload_to=upload_location,blank=True,null=True)
 	content = models.TextField()
 	timestamp = models.DateTimeField( auto_now = False ,auto_now_add = True)
 	updated = models.DateTimeField( auto_now = True , auto_now_add = False)
-
-
+	comment = models.TextField(default='hello')
+	# comment_timestamp = models.DateTimeField(auto_now = True , auto_now_add = False)
 
 	# def __unicode__(self):
 	# 	return self.title
@@ -48,6 +50,9 @@ class Post(models.Model):
 
 	class Meta:
 	    ordering = [  "-updated"]	    
+
+
+
 
 
 
